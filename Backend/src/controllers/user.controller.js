@@ -2,6 +2,7 @@ import { User } from "../models/user.model.js";
 import ApiError from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import asyncHandler from "../utils/asyncHandler.js";
+import jwt from "jsonwebtoken";
 const generateTokens=async(user_id)=>{
         const user=await User.findById(user_id);//Finding the user
         //Generating the tokens
@@ -102,9 +103,23 @@ const changePassword=asyncHandler(async(req,res)=>{
     await user.save({validateBeforeSave:false})
     return  res.status(200).json(new ApiResponse(200,"Password Changed Succssfully!!"))
 
-
-
+})
+const generatenewtoken=asyncHandler(async(req,res)=>{
+    const token =req.cookies?.refreshAccessToken
+    if(!token){throw new ApiError(401,'Please login again to get access')}
+    const decodedToken=jwt.verify(token,process.env.REFRESH_ACCESS_TOKEN_SECRET)
+    const user =await User.findById(decodedToken?._id)
+    if(!user){throw new ApiError(401,'The user no longer exists')}
+    const{accessToken,refreshAccessToken}=await generateTokens(user._id)
+    const Options={
+        httpOnly:true,
+        secure:true
+    }
+    return res.status(200)
+              .cookie("accessToken",accessToken,Options)
+              .cookie("refreshAccessToken",refreshAccessToken,Options)
+              .json(new ApiResponse(200,{accessToken,refreshAccessToken},"Access Token changed Successfully!!"))
+    
 })
 
-
-export{registerUser,loginUser,logoutUser,changePassword}
+export{registerUser,loginUser,logoutUser,changePassword,generatenewtoken}
