@@ -14,19 +14,20 @@ const fileUpload=asyncHandler(async(req,res)=>{
         throw new ApiError(400,"Error while uploading the file")
 
     }
-    // const user=await User.findById(req.user?._id)
-    // if(!user){
-    //     throw new ApiError(400,"User is not logged in!")
-    // }
+    const user=await User.findById(req.user?._id)
+    if(!user){
+        throw new ApiError(400,"User is not logged in!")
+    }
     const file=await File.create({
         url:uploadedfile.url,
-        // owner:user._id
+         owner:user._id
 
 })
 if(!file){
     throw new ApiError(400,"Error while  creating a asset in database!!!")
 }
-
+user.allVideos.push(file._id)
+user.save({validateBeforeSave:false})   
 return res.status(200).json(new ApiResponse(200,{file},"File has been created successfully"))
 
 
