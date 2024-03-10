@@ -13,11 +13,9 @@ const userSchema= mongoose.Schema({
     },rollNumber:{trim:true,
         index:true,
         type:Number,
-        required:true
     },
     fullName:{
         type:String,
-        required:true,
         trim:true,
         index:true
     },
@@ -27,7 +25,11 @@ const userSchema= mongoose.Schema({
         },
         refreshToken:{
             type:String
-        }
+        },
+        allVideos:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"File"
+        }]
     
 },{timestamps:true})
 userSchema.pre("save",async function(next){

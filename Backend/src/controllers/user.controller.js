@@ -28,7 +28,7 @@ const registerUser=asyncHandler(async(req,res)=>{
         throw new ApiError(400,"Password is required!")
     }
     //Checking if user exits or not
-    const existedUser=await User.findOne(userName)
+    const existedUser=await User.findOne({userName})
     if(existedUser){
         throw new ApiError(400,"User already exists")
     }
