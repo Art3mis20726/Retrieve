@@ -183,7 +183,8 @@ const getAllFiles = asyncHandler(async (req, res) => {
                         },
                     },{
                         $project:{
-                            url:1
+                            url:1,
+                            uploadTimestamp:1
                         }
                     }
                 ],
