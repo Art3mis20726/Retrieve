@@ -11,7 +11,7 @@ const fileSchema = mongoose.Schema(
         public_id: {
             type: String,
         },
-        uploadTimestamp: { type: Date, default: Date.now },
+        uploadTimestamp: { type: Date },
 
         expiryTimestamp: Date,
     },

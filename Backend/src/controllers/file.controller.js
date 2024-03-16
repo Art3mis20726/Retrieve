@@ -6,7 +6,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import { uploadoncloudinary } from "../utils/cloudinary.js";
 import deleteExpiredFiles from "../utils/deleteExpiredFiles.js"
-// import { deleteAsset } from "../utils/deleteAfterTime.js";
+import moment from "moment-timezone"; // Import moment-timezone library
 const fileUpload=asyncHandler(async(req,res)=>{
     const filelocalPath=req.files?.file[0].path;
     if(!filelocalPath){
@@ -25,24 +25,27 @@ const fileUpload=asyncHandler(async(req,res)=>{
         url:uploadedfile.url,
          owner:user._id,
          public_id:uploadedfile.public_id,
-        expiryTimestamp: new Date(Date.now() + 2*60 * 1000) // Example: 1 minute expiry
+        expiryTimestamp: moment().tz("Asia/Kolkata").add(2, "minutes").toDate() // Example: 2 minutes expiry
 
 })
-if(!file){
-    throw new ApiError(400,"Error while  creating a asset in database!!!")
+const fileAsset=await File.findById(file._id).select("-owner -_id -expiryTimestamp -uploadTimestamp")
+if(!fileAsset){
+throw new ApiError(500,"Internal Server Error!!")
 }
 user.allVideos.push(file._id)
 user.save({validateBeforeSave:false})
 
-const cronJob=cron.schedule('* * * * *', deleteExpiredFiles); // Run every minute
 if(user.allVideos.length===0){
     cronJob.stop();
     console.log("No files Uploaded!!!");
 }
+const cronJob = cron.schedule('* * * * *', deleteExpiredFiles, {
+    timezone: "Asia/Kolkata" // Set timezone to India (Asia/Kolkata)
+}); // Run every minute
 
 // deleteExpiredFiles()
 
-return res.status(200).json(new ApiResponse(200,{file},"File has been created successfully"))
+return res.status(200).json(new ApiResponse(200,{fileAsset},"File has been created successfully"))
 
 
 })
