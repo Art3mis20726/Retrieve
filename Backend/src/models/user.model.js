@@ -29,7 +29,9 @@ const userSchema= mongoose.Schema({
         allVideos:[{
             type:mongoose.Schema.Types.ObjectId,
             ref:"File"
-        }]
+        }],email:{
+            type:String
+        }
     
 },{timestamps:true})
 userSchema.pre("save",async function(next){

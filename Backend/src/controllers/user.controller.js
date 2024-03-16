@@ -199,6 +199,27 @@ const getAllFiles = asyncHandler(async (req, res) => {
         .status(200)
         .json(new ApiResponse(200,user[0].docs, "Successfully got all files"));
 });
+const updateAccountDetails=asyncHandler(async(req,res)=>{
+    const {rollNumber,email,fullName }= req.body;
+    if(rollNumber===""){
+        throw new ApiError(400,"Roll number is required!!!")
+    }
+    if(fullName===""){
+        throw new ApiError(400,"Full Name is required!!!")
+    }
+    if(email===""){
+        throw new ApiError(400,"Email is required!!!")
+    }
+    const user =await User.findByIdAndUpdate(req.user?._id,{$set:{
+        fullName:fullName,email:email,rollNumber:rollNumber
+    }},{new:true}).select("-password -refreshToken")
+    if(!user){
+        throw new ApiError(404,"User not found!!!");
+    }
+return res.status(200)
+.json(new ApiResponse(200,{user},"Updated Account Details Successfully"))
+
+})
 export {
     registerUser,
     loginUser,
@@ -206,4 +227,5 @@ export {
     changePassword,
     generatenewtoken,
     getAllFiles,
+    updateAccountDetails
 };
