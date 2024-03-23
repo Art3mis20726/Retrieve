@@ -35,17 +35,18 @@ throw new ApiError(500,"Internal Server Error!!")
 user.allVideos.push(file._id)
 user.save({validateBeforeSave:false})
 
-const cronJob = cron.schedule('* * * * *', deleteExpiredFiles, {
+const cronJob = cron.schedule('* * * * *',()=>{ 
+    const delFile=deleteExpiredFiles(user._id);
+    if(delFile==1){
+        cronJob.stop();
+        console.log("No files Uploaded!!!");
+    }}, {
     timezone: "Asia/Kolkata" // Set timezone to India (Asia/Kolkata)
 }); // Run every minute
-if(user.allVideos.length===0){
-    cronJob.stop();
-    console.log("No files Uploaded!!!");
-}
 
 // deleteExpiredFiles()
 
-return res.status(200).json(new ApiResponse(200,{fileAsset},"File has been created successfully"))
+return res.status(200).json(new ApiResponse(200,{fileAsset},"File has been uploaded successfully"))
 
 
 })
