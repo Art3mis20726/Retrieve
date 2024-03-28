@@ -1,20 +1,17 @@
+import React from "react";
+import { useRoutes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import About from "./pages/about";
 // import UploadWidget from "./components/UploadWidget";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-       {/* <Route path="/" element={<Home />}/> */}
-      </Routes>
     <div>
       <Header />
       <Sidebar/>
       {/* <UploadWidget /> */}
     </div>
-    </BrowserRouter>
   );
 }
 

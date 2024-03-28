@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { ExpandMore, HelpOutline} from '@mui/icons-material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AppsIcon from '@mui/icons-material/Apps';
+import {Link} from 'react-router-dom';
 
 function Header() {
   return (
@@ -23,16 +24,17 @@ function Header() {
         <div className="header_icons">
             <span>
                 {/* <HelpOutline /> */}
-                <div>About Us</div>
+                <Link to="/about" className='header_link'>About Us</Link>
                 {/* <SettingsIcon /> */}
-
             </span>
+            <Link to="/profile">
+                <img src=" " alt="User Photo" />
+            </Link>
 
             {/* <AppsIcon /> */}
-            <img src=" " alt="User Photo" />
         </div>
     </div>
-  )
+  );
 }
 
 export default Header
