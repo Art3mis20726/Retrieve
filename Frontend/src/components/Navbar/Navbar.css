@@ -1,0 +1,149 @@
+nav {
+  width: 100%;
+  background: #F2F9F7;
+  color: black;
+  padding: 4px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  padding-top: 30px;
+}
+
+.logo {
+  width: 180px;
+}
+
+.menu-icons {
+  margin-right: 20px;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out; 
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+.menu-icons{
+    display: none;
+}
+
+.user-pic{
+  cursor: pointer;
+}
+
+.sub-menu-wrap{
+  position: absolute;
+  top: 100%;
+  right: 10%;
+  width: 320px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+  z-index: 100;
+}
+
+.sub-menu-wrap.open-menu{
+  max-height: 400px;
+}
+
+.sub-menu-wrap{
+  max-height: 0px;
+}
+
+.sub-menu-wrap.show{
+  max-height: 400px;
+}
+
+.sub-menu{
+  background: white;
+  padding: 20px;
+  margin: 10px;
+}
+
+.user-info{
+  display: flex;
+  align-items: center;
+}
+.user-info h3{
+  font-weight: 500;
+}
+.user-info i{
+  margin-right: 15px;
+}
+
+.sub-menu hr{
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: #ccc;
+  margin: 15px 0 10px;
+}
+
+.sub-menu-link{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #525252;
+  margin: 12px 0;
+}
+
+.sub-menu-link p{
+  width: 100%;
+}
+
+.sub-menu-link i{
+  background: #e5e5e5;
+  padding: 8px;
+  margin-right: 15px;
+}
+
+.sub-menu-link:hover p{
+  font-weight: 600;
+}
+
+@media screen and (max-width: 850px) {
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    background: #F2F9F7;
+    width: 100%;
+    position: absolute;
+    top: 40px;
+    left: -100%;
+    opacity: 0;
+    z-index: 9; /* Increase the z-index to ensure it's above the navbar */
+  }
+
+  nav ul.active{
+    left: 0;
+    opacity: 1;
+    z-index: -1;
+  }
+
+  nav ul li {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-bottom: 1px solid grey;
+  }
+
+  .menu-icons{
+    display: block;
+    cursor: pointer;
+  }
+
+  .menu-icons i{
+    font-size: 1.2rem;
+  }
+}

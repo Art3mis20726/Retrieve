@@ -1,0 +1,61 @@
+.text {
+    padding-top: 150px;
+    text-align: center;
+}
+
+.text p {
+    flex: 1;
+    line-height: 1.7;
+    color: #555454;
+    margin-bottom: 20px; /* Add margin bottom */
+}
+
+.text p:first-of-type {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.text p:last-of-type {
+    margin-bottom: 30px;
+}
+
+.text p::before,
+.text p::after {
+    display: none; /* Remove decorative lines */
+}
+
+.btn {
+    text-align: center;
+}
+
+.button-container {
+    text-align: center; /* Center align the button container */
+}
+
+  .content {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .text {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 80px;
+  }
+  
+  .image img {
+    max-width: 80%;
+    height: auto;
+  }
+  
+  .button-container {
+    text-align: center;
+  }
+  
+
