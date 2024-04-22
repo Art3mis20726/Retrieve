@@ -8,7 +8,7 @@ const deleteExpiredFiles=async(user_id)=>{
         let user = await User.findById(user_id).select("-password");
         if(!user) throw new ApiError(400,"User not authenticated")
         if(user.allVideos.length==0){
-            console.log("No files Uploaded!!!");
+            // console.log("No files Uploaded!!!");
             return 1;
         }
         for (let i = 0; i < user.allVideos.length; i++) {

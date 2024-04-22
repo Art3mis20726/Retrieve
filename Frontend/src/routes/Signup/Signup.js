@@ -19,9 +19,9 @@ const Signup = () => {
       });
 
       if (response.ok) {
-        setMessage('User created successfully');
+        alert('User created successfully');
       } else {
-        setMessage('Error creating user');
+        alert('Error creating user');
       }
     } catch (error) {
       console.error('Error creating user:', error);
