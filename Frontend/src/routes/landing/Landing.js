@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import './Landing.css';
 import img from '../../media/Uploading.svg';
+import {Link} from 'react-router-dom'
 
 const Landing = () => {
   return (
@@ -22,7 +23,9 @@ const Landing = () => {
           </div>
         </div>
         <div className="button-container">
+          <Link to='/signup'>
           <button className='btn'>Try Retrieve</button>
+          </Link>
         </div>
       </div>
     </>

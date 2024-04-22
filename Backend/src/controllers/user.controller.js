@@ -70,7 +70,10 @@ const loginUser = asyncHandler(async (req, res) => {
     }
     const Options = {
         httpOnly: true,
+        partitioned:true,
         secure: true,
+        sameSite:'Lax',
+        // expires: new Date(new Date(Date.now() + 99* 99* 99 * 60000))
     };
     //Generating accesstokens
     const { accessToken, refreshAccessToken } = await generateTokens(user._id);
@@ -82,11 +85,11 @@ const loginUser = asyncHandler(async (req, res) => {
         .cookie("accessToken", accessToken, Options)
         .cookie("refreshAccessToken", refreshAccessToken, Options)
         .json(
-            new ApiResponse(
-                200,
-                { user: loggedInUser, accessToken, refreshAccessToken },
-                "User Logged in Successfully!"
-            )
+            {
+                user: loggedInUser,
+                msg:"User Logged in Successfully!"
+            }
+            
         );
 });
 const logoutUser = asyncHandler(async (req, res) => {

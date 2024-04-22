@@ -29,9 +29,6 @@
     box-sizing: border-box;
   }
   
-  button[type="submit"]{
-    margin-left: 150px;
-  }
 
   button[type="submit"]:hover {
     background-color: #4602cd;

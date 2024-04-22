@@ -4,17 +4,7 @@ import ApiError from "./ApiError.js";
 import deletefromcloudinary from "./deletecloudinary.js";
 const deleteExpiredFiles=async(user_id)=>{
     try {  
-        // const expiredFiles=await File.aggregate([{
-        //     $match:{
-        //         expiryTimestamp: { $lt: new Date()}
-        //     }},{
-        //         $lookup:{
-        //             from: 'users',
-        //             localField:'owner',  
-        //             foreignField: '_id', 
-        //             as: 'owner'
-        //     }
-        // }])
+    
         let user = await User.findById(user_id).select("-password");
         if(!user) throw new ApiError(400,"User not authenticated")
         if(user.allVideos.length==0){
@@ -48,10 +38,6 @@ const deleteExpiredFiles=async(user_id)=>{
              return 0;}
              return;
     }
-        
-           
-        
-        
        // }
    
  } catch (error) {

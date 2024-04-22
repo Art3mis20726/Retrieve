@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './FileUpload.css';
+
+// This component allows the user to upload a file to the server
 
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -11,7 +14,6 @@ const FileUpload = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (!selectedFile) {
       setError('Please select a file.');
       return;
@@ -19,27 +21,20 @@ const FileUpload = () => {
 
     const formData = new FormData();
     formData.append('file', selectedFile);
-
+    console.log(formData);
     try {
-      const response = await fetch('http://localhost:8000/api/v1/files/fileUpload', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          // Add any necessary headers (e.g., authentication token)
-        },
+      const response = await axios.post('http://localhost:8000/api/v1/files/fileUpload', formData, {
+        withCredentials: true,credentials:"include"
+        ,headers:{
+          'Content-Type': 'multipart/form-data',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials':true,
+        }
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to upload file.');
-      }
-
-      const data = await response.json();
-      console.log('File uploaded successfully:', data);
-      // Optionally, handle success response
-
-      // Clear selected file
-      setSelectedFile(null);
-      setError(null);
+alert("File Uploaded successfully")
+      // console.log('File uploaded successfully:', response.data);
+      setSelectedFile(null); // Clear the selected file
+      setError(null); // Clear any errors
     } catch (error) {
       console.error('Error uploading file:', error);
       setError('Failed to upload file.');
@@ -48,11 +43,12 @@ const FileUpload = () => {
 
   return (
     <div className="file-upload-container">
+      <h3>Upload a File</h3>
       <form onSubmit={handleSubmit}>
-        <input type="file" className="file-input" onChange={handleFileChange} />
-        <button type="submit" className="upload-button btn">Upload File</button>
+        <input type="file" onChange={handleFileChange} />
+        <button type="submit">Upload File</button>
       </form>
-      {error && <p className="error-message">{error}</p>}
+      {error && <p>{error}</p>}
     </div>
   );
 };

@@ -51,4 +51,4 @@ return res.status(200).json(new ApiResponse(200,{fileAsset},"File has been uploa
 
 })
 
-export{fileUpload}
+export{fileUpload,}
