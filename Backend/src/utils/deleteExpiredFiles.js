@@ -28,7 +28,7 @@ const deleteExpiredFiles=async(user_id)=>{
             user.allVideos.splice(i,1);
             const delFromDatabase=await File.findByIdAndDelete(file._id);
             if(!delFromDatabase){
-             throw new ApiError(400,"Error while deleting fromn database")
+             throw new ApiError(400,"Error while deleting from database")
             }
             console.log(`File deleted!!! with publicId '${file.public_id}'`);   
             // const user =await User.findById(file.owner)          

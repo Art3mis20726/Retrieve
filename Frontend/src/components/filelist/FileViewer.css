@@ -1,0 +1,36 @@
+.file-viewer {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.file-viewer h1 {
+  color: #333;
+}
+
+.file-list {
+  margin-top: 20px;
+}
+
+.file-entry {
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.file-entry:hover {
+  background-color: #f0f0f0;
+}
+
+.file-link {
+  text-decoration: none;
+  color: #0066cc;
+}
+
+.file-link:hover {
+  text-decoration: underline;
+}
