@@ -2,8 +2,6 @@
   font-family: Arial, sans-serif;
   margin: 20px;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
 }
 
 .file-viewer h1 {
@@ -15,11 +13,17 @@
 }
 
 .file-entry {
+  display: inline-block; /* Display as inline block to ensure they appear in one row */
+  width: 150px; /* Adjust the width according to your preference */
+  height: 150px; /* Adjust the height according to your preference */
   padding: 10px;
-  margin-bottom: 5px;
+  margin: 5px; /* Adjust the margin according to your preference */
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: background-color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .file-entry:hover {
@@ -33,4 +37,18 @@
 
 .file-link:hover {
   text-decoration: underline;
+}
+
+.file-icon {
+  text-align: center; /* Center the icon */
+  margin-bottom: 10px; /* Add some space below the icon */
+}
+
+.file-icon .icon {
+  font-size: 36px; /* Adjust the font size of the icon */
+  color: #333; /* Set the color of the icon */
+}
+
+svg{
+  color: purple;
 }
