@@ -1,21 +1,27 @@
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-// import UploadWidget from "./components/UploadWidget";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './routes/Home/Home';
+import Contact from './routes/Contact/Contact';
+import About from './routes/About/About';
+import Signin from './routes/Signin/Signin';
+import Signup from './routes/Signup/Signup';
+import Landing from './routes/landing/Landing';
+import Profile from './components/profile/Profile';
 
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-       {/* <Route path="/" element={<Home />}/> */}
-      </Routes>
     <div>
-      <Header />
-      <Sidebar/>
-      {/* <UploadWidget /> */}
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
     </div>
-    </BrowserRouter>
   );
-}
+};
 
 export default App;

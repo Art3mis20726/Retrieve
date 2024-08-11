@@ -1,0 +1,55 @@
+.file-viewer {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+}
+
+.file-viewer h1 {
+  color: #333;
+}
+
+.file-list {
+  margin-top: 20px;
+}
+
+.file-entry {
+  display: inline-block; 
+  width: 150px; 
+  height: 150px; 
+  padding: 10px;
+  margin: 5px; 
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-entry:hover {
+  background-color: #f0f0f0;
+}
+
+.file-link {
+  text-decoration: none;
+  color: #0066cc;
+}
+
+.file-link:hover {
+  text-decoration: underline;
+}
+
+.file-icon {
+  text-align: center; 
+  margin-bottom: 10px;
+}
+
+.file-icon .icon {
+  font-size: 36px; /* Adjust the font size of the icon */
+  color: #333; /* Set the color of the icon */
+}
+
+svg{
+  color: #6524EB;
+}
+
