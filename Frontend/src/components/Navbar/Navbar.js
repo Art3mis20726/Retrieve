@@ -46,8 +46,17 @@ const Navbar = () => {
             <Link to="/profile" className='sub-menu-link'>
               <p>Profile</p>
             </Link>
+
             <Link to="/api/v1/users/logout" className='sub-menu-link'>
               <p>Logout</p>
+
+            <Link to="#" className='sub-menu-link'>
+              <p>Settings</p>
+            </Link>
+            <Link to="#" className='sub-menu-link'>
+              <p>Logout</p>
+              
+
             </Link>
           </div>
         </div>

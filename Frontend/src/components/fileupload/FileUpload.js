@@ -44,9 +44,15 @@ alert("File Uploaded successfully")
   return (
     <div className="file-upload-container">
       <h3>Upload a File</h3>
+
       <form className="file-upload-form" onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} />
         <button className="btn" type="submit">Upload File</button>
+
+      <form onSubmit={handleSubmit}>
+        <input type="file" onChange={handleFileChange} />
+        <button type="submit">Upload File</button>
+
       </form>
       {error && <p>{error}</p>}
     </div>
