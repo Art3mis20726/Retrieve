@@ -34,13 +34,13 @@ To set up the Retrieve project locally, follow these steps:
 2. Navigate to the Project Directory
 - Backend: Navigate to the backend directory and install dependencies.
 ```bash
-  cd ./Backend
+  cd  Backend
   npm install -D nodemon
   npm install bcrypt cloudinary cookie-parser cors dotenv express jsonwebtoken moment-timezone mongoose mongosh multer node-cron prettier
 ```
 - Frontend: Navigate to the frontend directory and install dependencies.
 ```bash
-  cd ./Frontend
+  cd  Frontend
   npm install
 ```
 3. Run the Application
